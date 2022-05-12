@@ -4,19 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>To do App</title>
 </head>
 <body>
     <div class="toolbox-cont">
         <div class="toolbox-color-cont">
-            <div class="lightpink"></div>
-            <div class ="lightgreen"></div>
-            <div class= "lightblue"></div>
-            <div class = "black"></div>
+            <div class="lightpink color"></div>
+            <div class ="lightgreen color"></div>
+            <div class= "lightblue color"></div>
+            <div class = "black color"></div>
         </div>
         <div class="action-btn-cont">
-            <div class="add-btn"></div>
-            <div class="remove-btn"></div>
+            <div class="add-btn">
+                <i class="fa-solid fa-plus"></i>
+            </div>
+            <div class="remove-btn">
+                <i class="fa-solid fa-xmark"></i>
+            </div>
         </div>
     </div>
 
@@ -28,16 +36,16 @@
 
 
     <!-- Modal container -->
-    <div>
-        <textarea palceholder="Enter Your Task"></textarea>
+    <div class="modal-cont">
+        <textarea placeholder="Enter Your Task"></textarea>
         <div class = "priority-color-cont">
-            <div class="lightpink"></div>
-            <div class ="lightgreen"></div>
-            <div class= "lightblue"></div>
-            <div class = "black"></div>
+            <div class="priority-color lightpink"></div>
+            <div class ="priority-color lightgreen"></div>
+            <div class= "priority-color lightblue"></div>
+            <div class = "priority-color black"></div>
         </div>
     </div>
 
-
+    <script src="script.js"></script>
 </body>
 </html>
