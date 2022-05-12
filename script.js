@@ -1,14 +1,13 @@
 //click to open and close modal containner
 const addbtnSelector = document.querySelector(".add-btn");
 const modalSelector = document.querySelector(".modal-cont");
-let flagVis = false;
+
 addbtnSelector.addEventListener("click",function(){
-    if(flagVis)
+    if(modalSelector.style.display=='flex')
     modalSelector.style.display="none";
     else
     modalSelector.style.display="flex";
 
-    flagVis=!flagVis;
 
 });
 

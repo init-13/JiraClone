@@ -73,9 +73,7 @@ body{
     height:100%;
     width:75%;
     background-color:#dfe4ea ;
-    font-size:2rem;
-    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-weight: bolder;
+    font-size:1.5rem;
     border:none;
     outline:none;
     resize: none;
@@ -100,8 +98,31 @@ body{
     border: 3px solid red;
   }
   
+  .ticket-cont{
+    height: 12rem;
+    width: 15rem;
+    background-color: #f1f2f6;
+    border: 3px solid black;
+  }
   
-  
+  .ticket-color{
+    height: 1rem;
+    background-color:black;
+  }
+
+  .ticket-id{
+    height: 2rem;
+    background-color: burlywood;
+  }
+
+  .task-area{
+    height: calc(100% - 1rem - 2rem);
+    font-size: 1.5rem;
+    outline: none;
+    overflow-wrap: break-word;
+  }
+
+
   
   
   
