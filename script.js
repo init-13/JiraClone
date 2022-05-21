@@ -112,8 +112,6 @@ function getIndex(id){
 
 function handleRemove(ticket,id){
 
-    
-
     ticket.addEventListener("click",function(){
 
         if(!isRemovebtnActive) 
