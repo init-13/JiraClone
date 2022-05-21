@@ -7,6 +7,7 @@ let isModalPresent = false;
 let allTickets = [];
 const delBtn = document.querySelector(".remove-btn");
 let isRemovebtnActive = false;
+const colorFilter = document.querySelectorAll(".color");
 
 addbtnSelector.addEventListener("click",function(){
     if(isModalPresent)
@@ -129,10 +130,48 @@ function handleRemove(ticket,id){
     })
 
 }
+function removeTickets(){
+ const presentTickets = document.querySelectorAll(".ticket-cont");
 
+ presentTickets.forEach(function(ticket){
+
+    ticket.remove();
+
+ });
+
+}
+
+function showTicket(arr){
+    arr.forEach(function (ticketObj) {
+        createTicket(
+          ticketObj.ticketColor,
+          ticketObj.data,
+          ticketObj.ticketId
+        );
+    })
+}
 // filter the color on click
+colorFilter.forEach(function(colorBox){
+    colorBox.addEventListener("click",function(){
+
+        let currColor = colorBox.classList[0];
+
+        let ticketsToShow = allTickets.filter(function(ticket){
+            return ticket.ticketColor == currColor;
+        });
+
+        removeTickets();
+        showTicket(ticketsToShow);
 
 
+});
+
+colorBox.addEventListener("dblclick",function(){
+    removeTickets();
+    showTicket(allTickets);
+});
+
+});
 
 
 
