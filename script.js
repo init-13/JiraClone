@@ -68,6 +68,7 @@ function createTicket(ticketColor, data, ticketId) {
     
     mainCont.appendChild(ticketCont);
     handleRemove(ticketCont,id);
+    colorChanger(ticketCont,id);
 
     if(!ticketId){
         allTickets.push({
@@ -102,11 +103,13 @@ delBtn.addEventListener("click",function(){
 
     
 });
+
 function getIndex(id){
     return allTickets.findIndex(function(ticket){
-            ticket.ticketId===id;
+            return ticket.ticketId==id;
     });
 }
+
 function handleRemove(ticket,id){
 
     
@@ -121,6 +124,8 @@ function handleRemove(ticket,id){
 
         // remove ticket from ticket array
         let index = getIndex(id);
+        console.log(index);
+        
         allTickets.splice(index,1);
         
         // update local storage
@@ -172,6 +177,51 @@ colorBox.addEventListener("dblclick",function(){
 });
 
 });
+
+function nextColor(color){
+    // console.log(colorF+ilter);
+    
+    let ColorArr =[];
+    colorFilter.forEach(function(colorBox){
+        ColorArr.push(colorBox.classList[0]);
+    });
+
+    console.log(ColorArr);
+
+    let index = ColorArr.findIndex(function(colorT){
+        return color==colorT;
+    });
+
+    index = (index+1) % ColorArr.length ;
+
+    return ColorArr[index];
+
+}
+
+function colorChanger(ticket, id){
+    let colorStrip = ticket.querySelector(".ticket-color");
+
+    colorStrip.addEventListener("click",function(){
+        let currColor = colorStrip.classList[1];
+        colorStrip.classList.remove(currColor);
+        ticket.classList.remove(currColor);
+        
+        currColor = nextColor(currColor);
+        colorStrip.classList.add(currColor);
+        ticket.classList.add(currColor);
+
+        let index = getIndex(id);
+        console.log(id,index);
+        
+        allTickets[index].ticketColor = currColor;
+
+        localStorage.setItem("tickets",JSON.stringify(allTickets));
+
+        
+
+    });
+
+}
 
 
 
