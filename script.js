@@ -4,6 +4,9 @@ const addbtnSelector = document.querySelector(".add-btn");
 const modalSelector = document.querySelector(".modal-cont");
 const mainCont = document.querySelector(".main-cont");
 let isModalPresent = false;
+let allTickets = [];
+const delBtn = document.querySelector(".remove-btn");
+let isRemovebtnActive = false;
 
 addbtnSelector.addEventListener("click",function(){
     if(isModalPresent)
@@ -63,5 +66,75 @@ function createTicket(ticketColor, data, ticketId) {
     `;
     
     mainCont.appendChild(ticketCont);
+    handleRemove(ticketCont,id);
+
+    if(!ticketId){
+        allTickets.push({
+            ticketColor,
+            data,
+            ticketId:id
+        });
+    }
+    localStorage.setItem("tickets",JSON.stringify(allTickets));
 }
+
+// local storage handling
+
+// push everything to tickets arr from localStorage and create them
+
+if (localStorage.getItem("tickets")) {
+    allTickets= JSON.parse(localStorage.getItem("tickets"));
+    allTickets.forEach(function(ticketObj){
+        createTicket(ticketObj.ticketColor, ticketObj.data, ticketObj.ticketId);
+    })
+}
+
+// filter with color
+
+delBtn.addEventListener("click",function(){
+    if(isRemovebtnActive)
+    delBtn.style.color = "white";
+    else
+    delBtn.style.color = "red";
+
+    isRemovebtnActive=!isRemovebtnActive;
+
+    
+});
+function getIndex(id){
+    return allTickets.findIndex(function(ticket){
+            ticket.ticketId===id;
+    });
+}
+function handleRemove(ticket,id){
+
+    
+
+    ticket.addEventListener("click",function(){
+
+        if(!isRemovebtnActive) 
+            return;
+
+        // remove ticket from frontend
+        ticket.remove();
+
+        // remove ticket from ticket array
+        let index = getIndex(id);
+        allTickets.splice(index,1);
+        
+        // update local storage
+        localStorage.setItem("tickets",JSON.stringify(allTickets));
+
+
+    })
+
+}
+
+// filter the color on click
+
+
+
+
+
+
 
