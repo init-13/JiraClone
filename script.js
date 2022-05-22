@@ -64,11 +64,13 @@ function createTicket(ticketColor, data, ticketId) {
         <div class="ticket-color ${ticketColor} "></div>
         <div class="ticket-id">${id}</div>
         <div class="task-area">${data}</div>
+        <div class="lock"><i class="fa-solid fa-lock"></i></div>
     `;
     
     mainCont.appendChild(ticketCont);
     handleRemove(ticketCont,id);
     colorChanger(ticketCont,id);
+    lockHandle(ticketCont, id);
 
     if(!ticketId){
         allTickets.push({
@@ -114,7 +116,7 @@ function handleRemove(ticket,id){
 
     ticket.addEventListener("click",function(){
 
-        if(!isRemovebtnActive) 
+        if(!isRemovebtnActive || isLocked(ticket)) 
             return;
 
         // remove ticket from frontend
@@ -195,11 +197,14 @@ function nextColor(color){
     return ColorArr[index];
 
 }
-
+// change priority colors on clicking colorstrip of ticket
 function colorChanger(ticket, id){
     let colorStrip = ticket.querySelector(".ticket-color");
 
     colorStrip.addEventListener("click",function(){
+
+        if(isLocked(ticket)) return;
+
         let currColor = colorStrip.classList[1];
         colorStrip.classList.remove(currColor);
         ticket.classList.remove(currColor);
@@ -220,8 +225,36 @@ function colorChanger(ticket, id){
     });
 
 }
+function isLocked(ticket){
+    let lockStatus = ticket.querySelector(".lock").children[0];
+    
+    return lockStatus.classList.contains("fa-lock");
+}
 
+// change lock status on clicking lock of a ticket
+function lockHandle(ticket, id){
 
+    let lockStatus = ticket.querySelector(".lock").children[0];
+    let taskArea = ticket.querySelector(".task-area");
+    lockStatus.addEventListener("click",function(){
+
+        lockStatus.classList.toggle("fa-lock");
+        lockStatus.classList.toggle("fa-lock-open");
+
+        
+        taskArea.setAttribute("contenteditable",!isLocked(ticket));
+
+        let index = getIndex(id);
+
+        allTickets[index].data = taskArea.innerHTML;
+        localStorage.setItem("tickets",JSON.stringify(allTickets)); 
+
+    });
+
+    
+
+ 
+}
 
 
 

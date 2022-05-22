@@ -126,6 +126,7 @@ body{
   }
 
   .task-area{
+    padding:5px;
     height: calc(100% - 1rem - 2rem);
     font-size: 1.5rem;
     outline: none;
@@ -140,3 +141,18 @@ body{
     padding: 65px;
   }
   
+  .lock{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -20px;
+    margin-right: 3px;
+    
+  }
+
+  .fa-lock{
+    color: red;
+  }
+
+  .fa-lock-open{
+    color: green;
+  }
