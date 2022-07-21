@@ -38,7 +38,7 @@ allColorBox.forEach(function(colorBox){
 const textAreaCont = document.querySelector(".text-area");
 modalSelector.addEventListener("keydown", function (e) {
     let key = e.key;
-    if (key == "Shift") {
+    if (key == "Enter") {
     //   console.log(modalPriorityColor);
       console.log(textAreaCont.value);
       createTicket(activeColor, textAreaCont.value);
